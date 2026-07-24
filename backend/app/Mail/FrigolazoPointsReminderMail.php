@@ -30,9 +30,7 @@ class FrigolazoPointsReminderMail extends Mailable
         return new Envelope(
             subject: '¡Tienes puntos disponibles en Frigolazo! - Descubre tus premios',
             bcc: $this->isTest ? [] : [
-                new Address('mcobian@wimbly.me', 'Mario Cobian'),
                 new Address('elopez@hydis.mx', 'Enrique Lopez'),
-                new Address('rreyes@hydis.mx', 'Rodrigo Reyes'),
             ]
         );
     }

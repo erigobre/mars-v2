@@ -31,9 +31,7 @@ class RewardClaimConfirmedMail extends Mailable implements ShouldQueue
         return new Envelope(
             subject: '¡Nuevo Canje Recibido! - Folio: ' . $this->claim->folio,
             bcc: [
-                new Address('mcobian@wimbly.me', 'Mario Cobian'),
                 new Address('elopez@hydis.mx', 'Enrique Lopez'),
-                new Address('rreyes@hydis.mx', 'Rodrigo Reyes'),
             ],
         );
     }

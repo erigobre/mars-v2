@@ -21,14 +21,6 @@ class AdminUserSeeder extends Seeder
         $admins = [
             [
                 'role_id' => $adminRoleId,
-                'username' => 'Mario Cobian',
-                'email' => 'mcobian@wimbly.me',
-                'phone' => '+524691331080',
-                'birthdate' => '2003-12-09',
-                'is_active' => true,
-            ],
-            [
-                'role_id' => $adminRoleId,
                 'username' => 'Enrique Lopez',
                 'email' => 'elopez@hydis.mx',
                 'birthdate' => '1986-10-04',

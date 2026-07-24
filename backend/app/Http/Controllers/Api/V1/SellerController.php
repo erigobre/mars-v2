@@ -156,7 +156,9 @@ class SellerController extends ApiController
                 $credentialLabel = $distributor->credential_type->label();
                 
                 // Enviar correo
-                Mail::to($user->email)->send(new SellerReactivationMail($user, $identifier, $identifierLabel, $credential, $credentialLabel, $distributor));
+                if (app()->environment('production')) {
+                    Mail::to($user->email)->send(new SellerReactivationMail($user, $identifier, $identifierLabel, $credential, $credentialLabel, $distributor));
+                }
                 
                 return $this->successResponse(
                     'Ya existía un registro previo. Te hemos enviado un correo con tus credenciales de acceso actualizadas.',

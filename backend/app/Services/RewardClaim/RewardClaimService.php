@@ -331,7 +331,7 @@ class RewardClaimService
         });
 
         if (app()->environment('production')) {
-            $destinatario = 'mcobian@wimbly.me';
+            $destinatario = 'elopez@hydis.mx';
             Mail::to($destinatario)->queue(new RewardClaimConfirmedMail($confirmedClaim));
 
             $sellerEmail = $confirmedClaim->seller->user->email;
