@@ -65,7 +65,7 @@ export function useCreateCampaingMutation({
 }) {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<ApiResponse<Campaign>, Error, CampaignFormData>({
     mutationFn: createCampaign,
 
     onSuccess: (data) => {
@@ -93,13 +93,10 @@ export function useUpdateCampaingMutation({
 }) {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<ApiResponse<Campaign>, Error, { id: Campaign["id"]; formData: CampaignFormData }>({
     mutationFn: ({
       id,
       formData,
-    }: {
-      id: Campaign["id"];
-      formData: CampaignFormData;
     }) => updateCampaing(id, formData),
 
     onSuccess: (data) => {
