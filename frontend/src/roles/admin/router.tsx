@@ -63,6 +63,7 @@ const AdminProfileView = lazy(
 );
 const DisplaysView = lazy(() => import("@/feature/admin/views/DisplaysView"));
 const LogisticsView = lazy(() => import("@/feature/admin/views/LogisticsView"));
+const ThemeSettingsView = lazy(() => import("@/feature/admin/views/ThemeSettingsView"));
 
 const SellerTiersView = lazy(
   () => import("@/feature/seller-tiers/views/SellerTiersView")
@@ -130,6 +131,7 @@ export const adminRoutes: RouteObject[] = [
         ],
       },
       { path: "profile", element: <AdminProfileView /> },
+      { path: "settings/theme", element: <ThemeSettingsView /> },
       {
         path: "analytics",
         children: [

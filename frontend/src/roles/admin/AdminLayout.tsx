@@ -18,6 +18,8 @@ import {
   MdLocalShipping,
   MdLayers,
   MdAccessTime,
+  MdPalette,
+  MdSettings,
 } from "react-icons/md";
 
 export const ADMIN_NAV_ITEMS: NavItem[] = [
@@ -79,7 +81,15 @@ export const ADMIN_NAV_ITEMS: NavItem[] = [
       { label: "Vendedores", to: "/admin/sellers", icon: MdPeople },
       { label: "Logística", to: "/admin/logistics", icon: MdLocalShipping }
     ],
-  }
+  },
+  {
+    label: "Configuración",
+    to: "/admin/settings/theme",
+    icon: MdSettings,
+    children: [
+      { label: "Tema y Apariencia", to: "/admin/settings/theme", icon: MdPalette },
+    ],
+  },
 ];
 
 export default function AdminLayout() {
