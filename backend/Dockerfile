@@ -1,15 +1,12 @@
 FROM php:8.4-fpm-alpine
 
-RUN apk add --no-cache \
-    nginx supervisor curl git zip unzip \
-    libpng-dev libjpeg-turbo-dev freetype-dev \
-    oniguruma-dev libxml2-dev icu-dev libzip-dev \
-    $PHPIZE_DEPS
+# IPE: instala extensiones PHP con binarios pre-compilados (sin GCC en build)
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
- && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip xml opcache intl \
- && pecl install redis \
- && docker-php-ext-enable redis
+RUN apk add --no-cache nginx supervisor curl git zip unzip
+
+RUN install-php-extensions pdo_mysql mbstring exif pcntl bcmath gd zip xml opcache intl redis
 
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
