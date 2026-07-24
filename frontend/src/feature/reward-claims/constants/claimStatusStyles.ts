@@ -1,0 +1,37 @@
+import type { RewardClaimStatus } from "../schema/rewardClaim";
+
+export type StatusStyle = {
+  container: string;
+  dot: string;
+};
+
+export const CLAIM_STATUS_CONFIG: Record<RewardClaimStatus, StatusStyle> = {
+  reserved: {
+    container: "bg-amber-100 text-amber-700 border-amber-200 shadow-sm",
+    dot: "bg-amber-500",
+  },
+  pending: {
+    container: "bg-orange-100 text-orange-700 border-orange-200 shadow-sm",
+    dot: "bg-orange-500",
+  },
+  approved: {
+    container: "bg-emerald-100 text-emerald-700 border-emerald-200 shadow-sm",
+    dot: "bg-emerald-500",
+  },
+  shipped: {
+    container: "bg-blue-100 text-blue-700 border-blue-200 shadow-sm",
+    dot: "bg-blue-500",
+  },
+  delivered: {
+    container: "bg-indigo-100 text-indigo-700 border-indigo-200 shadow-sm",
+    dot: "bg-indigo-500",
+  },
+  rejected: {
+    container: "bg-rose-100 text-rose-700 border-rose-200 shadow-sm",
+    dot: "bg-rose-500",
+  },
+  cancelled: {
+    container: "bg-gray-100 text-gray-700 border-gray-200 shadow-sm",
+    dot: "bg-gray-500",
+  }
+};

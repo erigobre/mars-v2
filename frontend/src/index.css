@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+/* FAMILIA 1: Erica One (Normalmente usada para títulos por ser llamativa) */
+@font-face {
+  font-family: 'EricaOne';
+  src: url('/fonts/EricaOne-Regular.ttf') format('truetype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* FAMILIA 2: Mars Centra (Con sus 3 variantes de grosor) */
+@font-face {
+  font-family: 'MarsCentra';
+  src: url('/fonts/MarsCentra-Book.ttf') format('truetype');
+  font-weight: 400; /* Book (Regular) */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MarsCentra';
+  src: url('/fonts/MarsCentra-Bold.ttf') format('truetype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MarsCentra';
+  src: url('/fonts/MarsCentra-Extrabold.ttf') format('truetype');
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-page-home: #002d4d;
+  --bg-page-rewards: #004a77;
+  --bg-page-ranking: #111827;
+  --bg-pattern-bottom: none;
+  --logo-main: url('/images/logo-frigolazo.png');
+
+  --theme-primary: #2563eb; 
+  --theme-secondary: #22c55e;
+  --theme-accent: #00aaff;
+  --theme-warning: #ff8800;
+  
+  --theme-light-primary: #f3f4f6;
+  --theme-light-secondary: #f3f4f6;
+  --theme-light-accent: #f3f4f6;
+  --theme-light-warning: #f3f4f6;
+  
+  --theme-text-dark: #1f2937;
+}
+
+[data-theme="mars"] {
+  --theme-primary: #0000a0;       /* Mars Blue */
+  --theme-secondary: #F60B45;     /* Kellanova Red */
+  --theme-accent: #009EEA;        /* Wrigleys Blue */
+  --theme-warning: #FF8B00;       /* Snacking Orange */
+  
+  --theme-light-primary: #BFBFF1; /* Mars Light */ 
+  --theme-light-secondary: #FFCFF1;/* Kellanova Light */
+  --theme-light-accent: #CCEDFF;  /* Wrigley Light */
+  --theme-light-warning: #FFE8CC; /* Snacking Light */
+  
+  --theme-text-dark: #3C3C3C;     /* Mars Dark Gray */
+
+  --bg-pattern-bottom: url('/images/doodles.webp');
+  --logo-main: url('/images/logo-frigolazo.webp');
+}
+
+@theme {
+  /* Colores de Marca */
+  --color-primary: #2563eb;
+  --color-secondary: #22c55e;
+  --color-secondary-light: #2bee7c;
+  --color-danger: #ef4444;
+
+  --color-brandBlue: #004a77;
+  --color-brandLightBlue: #00aaff;
+  --color-brandOrange: #ff8800;
+  --color-btn-green: #4fb800;
+  --color-btn-blue: #002b4d;
+
+  /* Colores de Interfaz */
+  --color-background-light: #f3f4f6;
+  --color-background-dark: #111827;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #1f2937;
+
+  --color-theme-primary: var(--theme-primary);
+  --color-theme-secondary: var(--theme-secondary);
+  --color-theme-accent: var(--theme-accent);
+  --color-theme-warning: var(--theme-warning);
+  
+  --color-theme-light-primary: var(--theme-light-primary);
+  --color-theme-light-secondary: var(--theme-light-secondary);
+  --color-theme-light-accent: var(--theme-light-accent);
+  --color-theme-light-warning: var(--theme-light-warning);
+  --color-theme-text-dark: var(--theme-text-dark);
+
+  /* Paddings */
+
+  /* Tipografía */
+  --font-sans: "MarsCentra", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "EricaOne", cursive;
+
+  /* Bordes y Sombras personalizados */
+  --radius-4xl: 40px;
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+
+  --animate-slide-fade: slideFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  --animate-slide-up: {
+    animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes slideFade {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer utilities {
+  @keyframes slideRight {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+
+  .animate-slide-right {
+    animation: slideRight 1.5s infinite ease-in-out;
+    width: 40%;
+  }
+
+  .bg-app-main {
+    background: radial-gradient(circle at center, #006b9b 0%, #002d4d 100%);
+  }
+
+  /* Efecto de tarjeta resaltada */
+  .login-card-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .input-glow:focus {
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+    border-color: var(--color-brandLightBlue);
+  }
+}
+
+@media (min-width: 768px) {
+  .bg-app-main {
+    background-attachment: fixed;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-slide-left {
+  animation: slideLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

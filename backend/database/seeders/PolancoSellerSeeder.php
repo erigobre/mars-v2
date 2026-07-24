@@ -1,0 +1,393 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Distributor;
+use App\Models\Role;
+use App\Models\Seller;
+use App\Models\SellerTier;
+use App\Models\User;
+use App\Services\Auth\SellerAuthKeyService;
+use App\Services\Phone\PhoneNormalizerService;
+use Illuminate\Database\Seeder;
+
+class PolancoSellerSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(SellerAuthKeyService $authService): void
+    {
+        $distributor = Distributor::whereHas('user', function ($query) {
+            $query->where('username', 'Polanco Representaciones');
+        })->first();
+        $tiers = SellerTier::where('distributor_id', $distributor->id)->get();
+        $roleSeller = Role::where('slug', 'seller')->first();
+
+        $vendedores = [
+            [
+                // Campos de User
+                'username'              => 'GARCIA GUTIERREZ MIRNA',
+                'email'                 => 'mirnagarciagutierrez@yahoo.com.mx',
+                'phone'                 => '5510532994',
+                'birthdate'             => '1969-12-20',
+                'is_active'             => true,
+
+                // Campos de Seller
+                'employee_code'         => '1',
+                'average_monthly_sales' => 10,
+                'seller_tier_id'        => 1,
+
+                // Dirección
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'NEGRETE LIMA ENRIQUE QUETZALCOATL',
+                'email'                 => 'rolfi_17@hotmail.com',
+                'phone'                 => '5530266832',
+                'birthdate'             => '1990-10-25',
+                'is_active'             => true,
+                'employee_code'         => '2',
+                'average_monthly_sales' => 38,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'MENDEZ TRUJILLO DANIEL',
+                'email'                 => 'daniel1233.dmt@gmail.com',
+                'phone'                 => '5530266829',
+                'birthdate'             => '1979-02-07',
+                'is_active'             => true,
+                'employee_code'         => '3',
+                'average_monthly_sales' => 106,
+                'seller_tier_id'        => 2,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'NEYRA HUERTA SALVADOR ULISES',
+                'email'                 => 'salvador_nh01@hotmail.com',
+                'phone'                 => '5530266830',
+                'birthdate'             => '1982-09-29',
+                'is_active'             => true,
+                'employee_code'         => '4',
+                'average_monthly_sales' => 23,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'BUSTOS SOTELO LUIS ALBERTO',
+                'email'                 => 'ls8797997@gmail.com',
+                'phone'                 => '5576186908',
+                'birthdate'             => '1998-01-25',
+                'is_active'             => true,
+                'employee_code'         => '6',
+                'average_monthly_sales' => 5,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'OLMOS GARCIA CESAR',
+                'email'                 => 'cesar_olmos@live.com.mx',
+                'phone'                 => '5530266826',
+                'birthdate'             => '1979-12-18',
+                'is_active'             => true,
+                'employee_code'         => '8',
+                'average_monthly_sales' => 15,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'SOTO VALERIO FELIPE',
+                'email'                 => 'Valeriof.fs@gmail.com',
+                'phone'                 => '5530266818',
+                'birthdate'             => '1981-05-19',
+                'is_active'             => true,
+                'employee_code'         => '9',
+                'average_monthly_sales' => 14,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'HERNANDEZ OLMEDO EDUARDO',
+                'email'                 => 'heoleduardo@gmail.com',
+                'phone'                 => '5567853459',
+                'birthdate'             => '1970-12-31',
+                'is_active'             => true,
+                'employee_code'         => '11',
+                'average_monthly_sales' => 2,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'JUAREZ LOPEZ JUAN CARLOS',
+                'email'                 => 'galletinjc@gmail.com',
+                'phone'                 => '5530342839',
+                'birthdate'             => '1979-06-23',
+                'is_active'             => true,
+                'employee_code'         => '13',
+                'average_monthly_sales' => 7,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'ESCAMILLA VELAZQUEZ DANIEL',
+                'email'                 => 'dany10450@gmail.com',
+                'phone'                 => '5544557411',
+                'birthdate'             => '1989-09-19',
+                'is_active'             => true,
+                'employee_code'         => '5',
+                'average_monthly_sales' => 1,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'XICALI ROJAS BRYANT AXEL',
+                'email'                 => 'bryant.axel182@gmail.com',
+                'phone'                 => '5612022493',
+                'birthdate'             => '1998-10-02',
+                'is_active'             => true,
+                'employee_code'         => '16',
+                'average_monthly_sales' => 1,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'MENDEZ ALVAREZ OSCAR DANIEL',
+                'email'                 => 'o.mendez@uinenlinea.mx',
+                'phone'                 => '5581243814',
+                'birthdate'             => '2001-02-11',
+                'is_active'             => true,
+                'employee_code'         => '17',
+                'average_monthly_sales' => 2,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'ALFARO SALAZAR EMMANUEL',
+                'email'                 => 'emmanuel.alfaro14@gmail.com',
+                'phone'                 => '7779453545',
+                'birthdate'             => '1985-08-30',
+                'is_active'             => true,
+                'employee_code'         => '14',
+                'average_monthly_sales' => 1,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'GONZALEZ ESTRADA MIGUEL ANGEL',
+                'email'                 => 'magonzalez@polancorepresentaciones.com',
+                'phone'                 => '5530266833',
+                'birthdate'             => '1972-08-20',
+                'is_active'             => true,
+                'employee_code'         => '10',
+                'average_monthly_sales' => 11,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'JOSE OMAR SANCHEZ TORRES',
+                'email'                 => 'geminisvideo@hotmail.com',
+                'phone'                 => '3335701748',
+                'birthdate'             => '1979-05-29',
+                'is_active'             => true,
+                'employee_code'         => '78',
+                'average_monthly_sales' => 16,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'ENRIQUE DE LEON MAYORAL',
+                'email'                 => 'enriquepolancorepresentaciones@hotmail.com',
+                'phone'                 => '3335706760',
+                'birthdate'             => '1989-07-25',
+                'is_active'             => true,
+                'employee_code'         => '79',
+                'average_monthly_sales' => 5,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'TONATZIN GONZALEZ SALCEDO',
+                'email'                 => 'tona.gs@hotmail.com',
+                'phone'                 => '3335707149',
+                'birthdate'             => '1990-02-24',
+                'is_active'             => true,
+                'employee_code'         => '80',
+                'average_monthly_sales' => 1,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'ROSA SOLEDAD CASTRO LOMELI',
+                'email'                 => 'soledad_0833@gmail.com',
+                'phone'                 => '3316984665',
+                'birthdate'             => '1990-08-30',
+                'is_active'             => true,
+                'employee_code'         => '83',
+                'average_monthly_sales' => 6,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'KENIA ALJANDRA SANDOVAL DURAN',
+                'email'                 => 'kenia.sandoval.duran@gmail.com',
+                'phone'                 => '3323101493',
+                'birthdate'             => '1989-12-23',
+                'is_active'             => true,
+                'employee_code'         => '84',
+                'average_monthly_sales' => 2,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+            [
+                'username'              => 'JOANNA MARISOL JIMENEZ ORNELAS',
+                'email'                 => 'jomajior@hotmail.com',
+                'phone'                 => '3319264497',
+                'birthdate'             => '1984-09-15',
+                'is_active'             => true,
+                'employee_code'         => '85',
+                'average_monthly_sales' => 5,
+                'seller_tier_id'        => 1,
+                'address_street'        => '16 de Marzo de 1861 1189',
+                'address_colonia'       => 'Leyes de Reforma 3ra Secc',
+                'address_city'          => 'Iztapalapa',
+                'address_state'         => 'Ciudad de México',
+                'address_zip'           => '09310',
+                'shipping_notes'        => 'Entregar todos los premios en matriz',
+            ],
+        ];
+
+        foreach ($vendedores as $v) {
+            $phoneNormalize = app(PhoneNormalizerService::class)->normalize($v['phone']);
+
+            $user = User::firstOrCreate(
+                ['email' => $v['email']],
+                [
+                    'username'  => $v['username'],
+                    'phone'     => $phoneNormalize,
+                    'birthdate' => $v['birthdate'],
+                    'role_id'   => $roleSeller->id,
+                    'is_active' => $v['is_active'],
+                ]
+            );
+
+            $assignedTier = $tiers->first(function ($tier) use ($v) {
+                return $tier->isInRange($v['average_monthly_sales']);
+            });
+
+            // 3. Crear el Perfil de Vendedor
+            $seller = Seller::updateOrCreate(
+                ['employee_code' => $v['employee_code'], 'distributor_id' => $distributor->id], 
+                [
+                    'user_id'               => $user->id,
+                    'distributor_id'        => $distributor->id,
+                    'seller_tier_id'        => $assignedTier ? $assignedTier->id : $v['seller_tier_id'],
+                    'average_monthly_sales' => $v['average_monthly_sales'],
+                    'address_street'        => $v['address_street'],
+                    'address_colonia'       => $v['address_colonia'],
+                    'address_city'          => $v['address_city'],
+                    'address_state'         => $v['address_state'],
+                    'address_zip'           => $v['address_zip'],
+                    'shipping_notes'        => $v['shipping_notes']
+                ]
+            );
+
+            $authService->applyAuth($seller, $distributor);
+        }
+    }
+}
