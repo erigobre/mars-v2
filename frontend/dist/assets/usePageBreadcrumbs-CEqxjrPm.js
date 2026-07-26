@@ -1,0 +1,1 @@
+import{bZ as u,r as a}from"./index-BUWqoBSH.js";function o(r){const s=u(e=>e.setBreadcrumbs),t=u(e=>e.resetBreadcrumbs);a.useEffect(()=>(r.length>0&&s(r),()=>t()),[JSON.stringify(r),s,t])}export{o as u};

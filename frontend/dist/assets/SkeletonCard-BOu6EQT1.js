@@ -1,0 +1,1 @@
+import{j as e}from"./index-BUWqoBSH.js";import{S as o}from"./Skeleton-B1MP6MAm.js";import{S as t}from"./SkeletonText-DTYc3K62.js";function a({className:r=""}){return e.jsxs("div",{className:`bg-white rounded-2xl border border-gray-100 p-6 space-y-4 ${r}`,children:[e.jsx(o,{height:"h-5",width:"w-2/5"}),e.jsx(t,{lines:3})]})}export{a as S};

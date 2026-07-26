@@ -1,0 +1,1 @@
+import{j as r}from"./index-BUWqoBSH.js";import{S as o}from"./Skeleton-B1MP6MAm.js";function i({lines:s=3}){const t=["w-full","w-5/6","w-4/5","w-3/4","w-2/3","w-1/2"];return r.jsx("div",{className:"space-y-2.5",children:Array.from({length:s}).map((n,e)=>r.jsx(o,{height:"h-3.5",width:t[e%t.length]},e))})}export{i as S};
